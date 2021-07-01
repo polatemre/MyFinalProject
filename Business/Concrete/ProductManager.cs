@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -29,11 +30,12 @@ namespace Business.Concrete
         // business codes: iş ihtiyaçlarımıza uygunluktur, ehliyet alma şartları vs.
         // validation: Nesnenin uyumuyla alakalı kurallar, ürün ismi 2 karakterden küçük olmayacak vs.
         // autofac aspectleri kullanmamızı sağlıyor.
+        [SecuredOperation("product.add,admin")] //yetki kontrolu
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             IResult result = BusinessRules.Run(
-                CheckIfProductCountOfCategoryCorrect(product.CategoryId),
+                //CheckIfProductCountOfCategoryCorrect(product.CategoryId),
                 CheckIfProductNameExist(product.ProductName),
                 CheckIfCategoryLimitExceded()
                 );
