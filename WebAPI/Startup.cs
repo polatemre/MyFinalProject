@@ -45,7 +45,9 @@ namespace WebAPI
 
             // içerisinde data tutmuyorsak AddSingleton yaparak tüm uygulama boyunca bir instance(sadece bir kere newlenir) oluşturmuş oluruz
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Http istekten cevaba kadar gecen surede takibi yapacak
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Http istekten cevaba kadar gecen surede takibi yapacak
+
+            services.AddCors();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -75,6 +77,8 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
