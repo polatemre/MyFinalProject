@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace Core.Extension
+namespace Core.Extensions
 {
     //Bir kisinin JWT'den gelen claimlerini okumak icin sınıf
     public static class ClaimsPrincipalExtensions

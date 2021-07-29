@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 
-namespace Core.Extension
+namespace Core.Extensions
 {
     //claim nesnesine yeni metotlar ekleme sınıfı
     public static class ClaimExtensions
